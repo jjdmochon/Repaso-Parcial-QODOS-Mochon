@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estudio Parcial - QODOS (Prof. Mochón)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="genyo fusion branding style.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-grey);
+        }
+
+        .flashcard-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+        .rotated {
+            transform: rotateY(180deg);
+        }
+        .tab-button {
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab-active {
+            border-color: var(--deep-teal);
+            background-color: #f0f7f7;
+            color: var(--deep-teal);
+            font-weight: 700;
+        }
+        .section-title {
+            font-weight: 900;
+            font-size: 2.25rem; /* text-4xl */
+            letter-spacing: -0.05em;
+            color: var(--deep-teal);
+        }
+    </style>
+</head>
+
+<body class="text-charcoal-grey">
+
+    <!-- Header y Navegación -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold" style="color: var(--deep-teal);">QODOS - Guía Parcial</h1>
+                <p class="text-sm text-charcoal-grey">Prof. Juan José Díaz Mochón</p>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-semibold">
+                <a href="#principio-unificador" class="hover:text-deep-teal">Principio Unificador</a>
+                <a href="#foco-parcial" class="hover:text-deep-teal">Foco: Parcial</a>
+                <a href="#repaso-temas" class="hover:text-deep-teal">Repaso por Temas</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Sección del Principio Unificador -->
+        <section id="principio-unificador" class="mb-16 text-center">
+            <h2 class="section-title mb-4">El Principio Unificador de la Química Orgánica</h2>
+            <div class="max-w-4xl mx-auto p-6 rounded-r-lg shadow-lg alert-box" style="background-color: #f0f7f7; border-left-color: var(--mint-green);">
+                <p class="text-lg leading-relaxed">
+                    ¡Buenas! Recordad siempre lo que os digo en clase, esto es la base de todo. Para entender y predecir cómo se comportará una molécula, solo necesitáis responder dos preguntas fundamentales:
+                </p>
+                <div class="mt-6 grid md:grid-cols-2 gap-6 text-left">
+                    <div class="bg-white p-4 rounded-lg border" style="border-color: var(--border-color);">
+                        <h3 class="font-bold text-xl mb-2" style="color: var(--deep-teal);">1. ¿Cuál es su Estructura?</h3>
+                        <p>Nos referimos a su forma tridimensional. ¿Es plana (sp2)? ¿Tetraédrica (sp3)? ¿Hay impedimento estérico? ¿Tiene quiralidad (R/S)? ¿Hay tensión en un anillo? La estructura define por dónde se puede atacar.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border" style="border-color: var(--border-color);">
+                        <h3 class="font-bold text-xl mb-2" style="color: var(--deep-teal);">2. ¿Cómo están sus Electrones?</h3>
+                        <p>¿Dónde está la "pintura roja"? Hablamos de la distribución electrónica. ¿Hay resonancia? ¿Efectos inductivos/mesómeros? ¿Dónde están las cargas δ+ y δ-? ¿Está disponible ese par de electrones? La electrónica define *por qué* se ataca.</p>
+                    </div>
+                </div>
+                <p class="mt-6 font-semibold text-lg">Estructura + Electrónica = Reactividad. Si domináis esto, domináis la química orgánica.</p>
+            </div>
+        </section>
+
+        <!-- Sección Foco Parcial: El Ramillete -->
+        <section id="foco-parcial" class="mb-16">
+            <h2 class="section-title mb-8 text-center">🎯 Foco: Claves del Examen Parcial</h2>
+            <p class="text-center max-w-3xl mx-auto mb-10">Estas son las reacciones y conceptos que he repetido hasta la saciedad. Son "pregunta de examen" casi segura. Dominad los mecanismos y, sobre todo, el *porqué* de cada paso usando nuestro Principio Unificador.</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Tarjeta 0: SEA vs SNAr -->
+                <div class="card p-6 rounded-lg shadow-lg" style="border-left-color: var(--vibrant-coral);">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Batalla en el Anillo: SEA vs. SNAr (T1)</h3>
+                    <p class="text-sm mb-4">El anillo aromático puede ser nucleófilo o electrófilo. ¡Todo depende de su decoración (sustituyentes)!</p>
+                    <div id="aromatic-tabs">
+                        <div class="flex border-b-2 border-gray-200">
+                            <button class="tab-button tab-active px-4 py-2 flex-1 text-sm" onclick="changeTab(event, 'tab-content-sea', 'aromatic-tabs')">SEA (Ataque E⁺)</button>
+                            <button class="tab-button px-4 py-2 flex-1 text-sm" onclick="changeTab(event, 'tab-content-snar', 'aromatic-tabs')">SNAr (Ataque Nu⁻)</button>
+                        </div>
+                        <div id="tab-content-sea" class="tab-content py-3 text-sm">
+                            <p><strong>El anillo es nucleófilo.</strong> Favorecida por grupos que lo hacen <strong style="color: var(--mint-green);">rico en electrones</strong> (Activantes/GED).</p>
+                            <p class="mt-1">El E⁺ es atacado por la nube π.</p>
+                        </div>
+                        <div id="tab-content-snar" class="tab-content py-3 hidden text-sm">
+                           <p><strong>El anillo es electrófilo.</strong> Necesita ser <strong class="highlight">pobre en electrones</strong> y tener un <strong style="color: var(--deep-teal);">buen grupo saliente</strong> (Estructura).</p>
+                           <p class="mt-1">Requiere GEA fuertes en o/p para hacer el C del ataque muy δ⁺ (Electrónica).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 1: SN1 vs SN2 -->
+                <div class="card p-6 rounded-lg shadow-lg" style="border-left-color: var(--vibrant-coral);">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">SN1 vs. SN2: La Gran Comparativa (T2)</h3>
+                    <p class="text-sm mb-4">La elección del camino depende 100% de la Estructura (sustrato) y la Electrónica (nucleófilo).</p>
+                    <button onclick="toggleElement('sn1sn2-details')" class="btn btn-primary w-full" style="background-color: var(--vibrant-coral);">Ver Comparativa Detallada</button>
+                    <div id="sn1sn2-details" class="hidden mt-4 text-xs overflow-x-auto">
+                        <table class="w-full table-auto">
+                            <thead><tr class="bg-slate-100"><th class="px-2 py-1">Factor</th><th class="px-2 py-1">SN1</th><th class="px-2 py-1">SN2</th></tr></thead>
+                            <tbody>
+                                <tr class="border-b"><td class="font-semibold px-2 py-1">Mecanismo</td><td class="px-2 py-1">2 pasos (vía C+)</td><td class="px-2 py-1">1 paso (concertado)</td></tr>
+                                <tr class="border-b"><td class="font-semibold px-2 py-1">Sustrato (Estructura)</td><td class="px-2 py-1">3º > 2º (¡Nunca 1º!)</td><td class="px-2 py-1">Metilo > 1º > 2º (¡Nunca 3º!)</td></tr>
+                                <tr class="border-b"><td class="font-semibold px-2 py-1">Nucleófilo (Electrónica)</td><td class="px-2 py-1">Débil (H₂O, ROH)</td><td class="px-2 py-1">Fuerte (OH⁻, CN⁻, N₃⁻)</td></tr>
+                                <tr class="border-b"><td class="font-semibold px-2 py-1">Disolvente</td><td class="px-2 py-1">Polar Prótico (estabiliza C+)</td><td class="px-2 py-1">Polar Aprótico (deja Nu⁻ "desnudo")</td></tr>
+                                <tr class="border-b"><td class="font-semibold px-2 py-1">Estereoquímica</td><td class="px-2 py-1">Racemización (ataque por 2 caras)</td><td class="px-2 py-1">Inversión (ataque dorsal)</td></tr>
+                                <tr><td class="font-semibold px-2 py-1">Transposiciones</td><td class="px-2 py-1">Sí, para formar C+ más estable</td><td class="px-2 py-1">No (no hay C+)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Aminación Reductiva -->
+                <div class="flashcard card p-6 rounded-lg shadow-lg cursor-pointer" style="border-left-color: var(--mint-green);" onclick="this.querySelector('.flashcard-inner').classList.toggle('rotated')">
+                    <div class="flashcard-inner relative w-full h-full min-h-[250px]">
+                        <div class="flashcard-front absolute w-full h-full">
+                            <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Aminación Reductiva (T4)</h3>
+                            <p class="text-sm">Mi reacción favorita. La base de la química dinámica. ¿Recordáis los dos pasos clave? Un equilibrio reversible y un paso final que "cierra la puerta".</p>
+                            <p class="mt-8 text-center font-semibold" style="color: var(--mint-green);">Haz clic para ver el mecanismo clave</p>
+                        </div>
+                        <div class="flashcard-back absolute w-full h-full bg-white rounded-lg" style="background-color: #f0f7f7;">
+                            <h4 class="font-bold text-lg mb-2">Mecanismo en dos fases:</h4>
+                            <p class="mb-3 text-sm"><strong class="text-green-700">Paso 1 (Dinámico):</strong> Aldehído/Cetona + Amina ⇌ Imina/Iminio. Esto está en equilibrio. La molécula "prueba" si encaja. Si no, se revierte.</p>
+                            <p class="text-sm"><strong class="text-red-700">Paso 2 (Irreversible):</strong> Reducción (con NaBH₃CN, LiAlH₄...). El agente reductor añade H⁻ a la imina/iminio, formando la amina final. Ya no hay vuelta atrás.</p>
+                            <p class="mt-3 text-xs">Amoníaco → Amina 1ª<br>Amina 1ª → Amina 2ª<br>Amina 2ª → Amina 3ª</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Sales de Diazonio -->
+                <div class="card p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Sales de Diazonio: El Comodín (T4)</h3>
+                    <p class="text-sm mb-4">Esta es la ruta sintética más versátil para aromáticos. El N₂ es el mejor grupo saliente que existe: ¡es un gas!</p>
+                    <button onclick="toggleElement('diazonio-details')" class="btn btn-primary w-full">Mostrar la Ruta Sintética</button>
+                    <div id="diazonio-details" class="hidden mt-4 text-center">
+                       <p class="font-mono text-sm break-words">
+                           Benceno →(HNO₃/H₂SO₄)→ Nitro-benceno →(Sn/HCl)→ Anilina →(NaNO₂/HCl)→ <strong>Ar-N₂⁺Cl⁻</strong>
+                       </p>
+                       <p class="mt-2 text-sm">Y desde aquí, con las reacciones de Sandmeyer, podemos sustituir el -N₂⁺ por casi cualquier nucleófilo (Cl, Br, CN, OH, I, F, H...).</p>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 4: Apertura de Epóxidos -->
+                <div class="card p-6 rounded-lg shadow-lg" style="border-left-color: var(--mint-green);">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Apertura de Epóxidos (T3)</h3>
+                    <p class="text-sm mb-4">La tensión del anillo (Estructura) hace que reaccionen, pero el camino depende de si el medio es ácido o básico (Electrónica).</p>
+                    <div id="epoxide-tabs">
+                        <div class="flex border-b-2 border-gray-200">
+                            <button class="tab-button tab-active px-4 py-2 flex-1 text-sm" onclick="changeTab(event, 'tab-content-acido', 'epoxide-tabs')">Medio Ácido</button>
+                            <button class="tab-button px-4 py-2 flex-1 text-sm" onclick="changeTab(event, 'tab-content-basico', 'epoxide-tabs')">Medio Básico</button>
+                        </div>
+                        <div id="tab-content-acido" class="tab-content py-3 text-sm">
+                            <p><strong>Regio:</strong> Tipo SN1. Ataque al C <strong>más sustituido</strong> (estabiliza mejor el C+ parcial).</p>
+                            <p><strong>Estéreo:</strong> Tipo SN2. Ataque <strong>anti</strong> con inversión de configuración en el C atacado.</p>
+                        </div>
+                        <div id="tab-content-basico" class="tab-content py-3 hidden text-sm">
+                            <p><strong>Regio:</strong> Tipo SN2. Ataque al C <strong>menos sustituido</strong> (menos impedido estéricamente).</p>
+                            <p><strong>Estéreo:</strong> Tipo SN2. Ataque <strong>anti</strong> con inversión de configuración en el C atacado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Transposición Pinacolínica -->
+                <div class="flashcard card p-6 rounded-lg shadow-lg cursor-pointer h-full" style="border-left-color: var(--vibrant-coral);" onclick="this.querySelector('.flashcard-inner').classList.toggle('rotated')">
+                    <div class="flashcard-inner relative w-full h-full min-h-[250px]">
+                        <div class="flashcard-front absolute w-full h-full">
+                            <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Transposición Pinacolínica (T3)</h3>
+                            <p class="text-sm">Un diol vecinal en medio ácido. ¡Esto es pregunta de examen! Recordad el paso clave: la migración 1,2 coordinada.</p>
+                             <p class="mt-8 text-center font-semibold" style="color: var(--vibrant-coral);">Haz clic para ver el mecanismo</p>
+                        </div>
+                        <div class="flashcard-back absolute w-full h-full bg-white rounded-lg text-sm" style="background-color: #FFF3F0;">
+                            <h4 class="font-bold text-lg mb-2">Pasos Clave:</h4>
+                            <ol class="list-decimal list-inside space-y-1">
+                                <li><strong>Protonación:</strong> Se protona el OH que forme el C+ más estable (normalmente el 3º).</li>
+                                <li><strong>Pérdida de H₂O:</strong> Sale el agua, formando el carbocatión.</li>
+                                <li><strong>¡El Paso Clave!</strong> El par de e⁻ del OH vecino "empuja" para formar un C=O, forzando la <strong>migración 1,2</strong> de un grupo (H o alquilo) con su par de e⁻ hacia el C+.</li>
+                                <li><strong>Desprotonación:</strong> Se pierde el H+ del carbonilo para dar la cetona/aldehído final.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 6: Activación de Alcoholes -->
+                <div class="card p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Activación de Alcoholes (T3)</h3>
+                    <p class="text-sm mb-4">El OH es un mal grupo saliente. Lo activamos para controlar la estereoquímica. Este es el "juego de lógica" que tenéis que dominar.</p>
+                    <ul class="text-sm space-y-2">
+                        <li><strong>TsCl / MsCl:</strong> Activa a OTs/OMs (buen G.S.). La reacción posterior con Nu⁻ es <strong>SN2 (Inversión)</strong>.</li>
+                        <li><strong>SOCl₂ (solo):</strong> Activa a Cl. El mecanismo es <strong>SNi (Retención)</strong>.</li>
+                        <li><strong>SOCl₂ + Piridina:</strong> Activa a Cl. El mecanismo es <strong>SN2 (Inversión)</strong>.</li>
+                    </ul>
+                </div>
+                
+                <!-- Tarjeta 7: Hofmann -->
+                <div class="flashcard card p-6 rounded-lg shadow-lg cursor-pointer h-full" style="border-left-color: var(--mint-green);" onclick="this.querySelector('.flashcard-inner').classList.toggle('rotated')">
+                    <div class="flashcard-inner relative w-full h-full min-h-[250px]">
+                        <div class="flashcard-front absolute w-full h-full">
+                            <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Diferenciar Hofmann (T4)</h3>
+                            <p class="text-sm">El mismo apellido, dos reacciones que no podéis confundir. Una quita un carbono, la otra forma un alqueno.</p>
+                             <p class="mt-8 text-center font-semibold" style="color: var(--mint-green);">Haz clic para comparar</p>
+                        </div>
+                        <div class="flashcard-back absolute w-full h-full bg-white rounded-lg text-sm" style="background-color: #f0f7f7;">
+                            <h4 class="font-bold text-lg mb-2 text-indigo-700">Transposición de Hofmann</h4>
+                            <p class="mb-3"><strong>Amida 1ª → Amina 1ª (-1 Carbono)</strong>. Reactivos: Br₂, NaOH. El grupo R migra al N y el C=O se pierde como CO₂.</p>
+                            <h4 class="font-bold text-lg mb-2 text-indigo-700">Eliminación de Hofmann</h4>
+                            <p><strong>Amina → Alqueno (Anti-Zaitsev)</strong>. Reactivos: 1) Exceso CH₃I; 2) Ag₂O, H₂O, calor. El grupo saliente amonio cuaternario es muy voluminoso (Estructura), forzando a la base a coger el protón menos impedido.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 8: Acilación de Aminas -->
+                <div class="card p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Acilación de Aminas (T4)</h3>
+                    <p class="text-sm mb-4">¿Cómo controlar la altísima reactividad de una anilina en una SEA? La "capamos" temporalmente. Es la estrategia de Proteger-Modificar-Desproteger.</p>
+                    <p class="font-mono text-xs md:text-sm text-center p-2 rounded break-words" style="background-color: #f0f7f7;">
+                        Anilina →(Ac₂O)→ Acetanilida →(Br₂/FeBr₃)→ p-Bromoacetanilida →(H₃O⁺)→ p-Bromoanilina
+                    </p>
+                    <p class="text-xs mt-2 text-center">La acilación "distrae" el par de electrones del N hacia el C=O por resonancia, bajando su poder activante sobre el anillo.</p>
+                </div>
+                
+                <!-- Tarjeta 9: Estereoquímica R/S -->
+                <div class="flashcard card p-6 rounded-lg shadow-lg cursor-pointer h-full" onclick="this.querySelector('.flashcard-inner').classList.toggle('rotated')">
+                     <div class="flashcard-inner relative w-full h-full min-h-[250px]">
+                        <div class="flashcard-front absolute w-full h-full">
+                            <h3 class="text-xl font-bold mb-4" style="color: var(--deep-teal);">Asignación R/S (T2-T3)</h3>
+                            <p class="text-sm">Recordatorio rápido, porque esto es la base para entender la inversión o retención en las reacciones.</p>
+                             <p class="mt-8 text-center font-semibold text-charcoal-grey">Haz clic para ver los pasos</p>
+                        </div>
+                        <div class="flashcard-back absolute w-full h-full bg-white rounded-lg text-sm" style="background-color: #FAFAFA;">
+                            <h4 class="font-bold text-lg mb-2">Pasos para asignar R/S:</h4>
+                            <ol class="list-decimal list-inside space-y-1">
+                                <li><strong>Priorizar:</strong> Asigna prioridades (1-4) a los 4 sustituyentes del centro quiral. Mayor número atómico = Mayor prioridad.</li>
+                                <li><strong>Orientar:</strong> Coloca la molécula (mentalmente o en papel) con el grupo de menor prioridad (4) apuntando hacia atrás (línea discontinua).</li>
+                                <li><strong>Girar:</strong> Traza un arco del grupo 1 al 2 y al 3.</li>
+                                <li><strong>Asignar:</strong> Si el giro es en el sentido de las agujas del reloj → <strong>R</strong> (Rectus). Si es en contra → <strong>S</strong> (Sinister).</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sección de Recursos Generales -->
+        <section id="recursos-generales" class="mb-16">
+            <h2 class="section-title mb-8 text-center">Recursos Generales de Estudio</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <a href="https://open.spotify.com/show/10mk55gi8pVECnahcF9Der?si=61278420d89f4061" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 p-4 bg-white rounded-lg shadow hover:shadow-md transition border-l-4" style="border-color: var(--mint-green);">
+                    <svg role="img" viewBox="0 0 24 24" class="h-10 w-10" style="color: var(--mint-green);" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><title>Spotify</title><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.923 16.204c-.22.359-.684.464-1.043.244-2.824-1.724-6.388-2.106-10.518-1.148-.422.099-.83-.16-1.009-.571-.18-.412.08-1.03.492-1.129 4.544-1.062 8.483-.62 11.648 1.299.359.22.464.684.244 1.043zM19.3 13.11c-.275.447-.855.59-1.302.315-3.235-1.98-7.958-2.5-11.513-1.365-.51.165-1.058-.165-1.223-.675-.165-.51.165-1.058.675-1.223C12.18 8.84 17.51 9.42 21.23 11.7c.447.275.59.855.315 1.302-.001.001-.001 0 0 0zm.135-3.234C15.24 7.514 9.17 7.234 5.396 8.284c-.595.16-1.222-.22-1.382-.814-.16-.595.22-1.222.814-1.382C9.696 4.935 16.48 5.245 20.82 7.734c.52.299.715.945.416 1.465-.299.52-.945.715-1.465.416z"/></svg>
+                    <div>
+                        <h3 class="font-bold">Podcast QODOS en Spotify</h3>
+                        <p class="text-sm">Escucha los resúmenes y claves del parcial.</p>
+                    </div>
+                </a>
+                 <a href="https://notebooklm.google.com/notebook/ecccc5d2-e6dc-40fc-a2f8-28356152d40b?authuser=2" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 p-4 bg-white rounded-lg shadow hover:shadow-md transition border-l-4" style="border-color: var(--deep-teal);">
+                    <svg class="h-10 w-10" style="color: var(--deep-teal);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                    </svg>
+                    <div>
+                        <h3 class="font-bold">NotebookLM: Guía del Parcial</h3>
+                        <p class="text-sm">Tu tutor IA para el examen del 26 de Nov.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- Sección de Repaso por Temas -->
+        <section id="repaso-temas" class="mb-16">
+            <h2 class="section-title mb-8 text-center">Repaso Conceptual y Recursos por Temas</h2>
+            <div class="space-y-4 max-w-5xl mx-auto">
+                <!-- Tema 1: Aromáticos -->
+                <div>
+                    <button class="accordion-header w-full text-left p-4 bg-white shadow-md rounded-lg font-bold text-lg flex justify-between items-center hover:bg-slate-50">
+                        <span>Tema 1: Hidrocarburos Aromáticos</span>
+                        <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content hidden p-6 bg-white border-t space-y-6">
+                        <div>
+                            <p><strong>Principio Unificador Aplicado:</strong> La <strong>estructura</strong> plana y cíclica junto con la <strong>distribución electrónica</strong> (nube π de 4n+2 electrones) le da una estabilidad excepcional.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-md mb-3" style="color: var(--mint-green);">Sustitución Electrofílica Aromática (SEA)</h4>
+                            <p class="text-sm mb-4">La nube π (electrónica) del benceno es nucleofílica y ataca a electrófilos (E+). Las 5 reacciones que debéis dominar son:</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <h5 class="font-bold">Halogenación</h5>
+                                    <p class="text-xs"><strong>Reactivos:</strong> Br₂, FeBr₃</p>
+                                    <p class="text-xs mt-1 font-mono bg-blue-100 text-blue-800 rounded px-2 py-1 inline-block">E⁺ = Br⁺</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <h5 class="font-bold">Nitración</h5>
+                                    <p class="text-xs"><strong>Reactivos:</strong> HNO₃ / H₂SO₄</p>
+                                    <p class="text-xs mt-1 font-mono bg-blue-100 text-blue-800 rounded px-2 py-1 inline-block">E⁺ = NO₂⁺</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <h5 class="font-bold">Sulfonación</h5>
+                                    <p class="text-xs"><strong>Reactivos:</strong> SO₃ / H₂SO₄</p>
+                                    <p class="text-xs mt-1 font-mono bg-blue-100 text-blue-800 rounded px-2 py-1 inline-block">E⁺ = SO₃</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <h5 class="font-bold">Alquilación de Friedel-Crafts</h5>
+                                    <p class="text-xs"><strong>Reactivos:</strong> R-Cl, AlCl₃</p>
+                                    <p class="text-xs mt-1 font-mono bg-blue-100 text-blue-800 rounded px-2 py-1 inline-block">E⁺ = R⁺ (¡Ojo transposiciones!)</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <h5 class="font-bold">Acilación de Friedel-Crafts</h5>
+                                    <p class="text-xs"><strong>Reactivos:</strong> RCOCl, AlCl₃</p>
+                                    <p class="text-xs mt-1 font-mono bg-blue-100 text-blue-800 rounded px-2 py-1 inline-block">E⁺ = R-C≡O⁺</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-md mb-3" style="color: var(--mint-green);">El Efecto de los Sustituyentes en SEA: ¿Quién Manda?</h4>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="flashcard bg-white rounded-lg shadow-md border cursor-pointer h-48" onclick="this.querySelector('.flashcard-inner').classList.toggle('rotated')">
+                                    <div class="flashcard-inner relative w-full h-full">
+                                        <div class="flashcard-front absolute w-full h-full p-4 flex flex-col justify-center items-center">
+                                            <h5 class="font-bold text-center">Grupos Electrón-Donantes (GED)<br/><span class="font-normal text-sm">(Activantes)</span></h5>
+                                            <p class="mt-4 text-xs text-center text-gray-500">Haz clic para ver la orientación</p>
+                                        </div>
+                                        <div class="flashcard-back absolute w-full h-full p-4 bg-green-50 rounded-lg flex flex-col justify-center">
+                                            <h5 class="font-bold text-green-800 text-center">Dirigen a Orto/Para</h5>
+                                            <p class="text-xs text-center mt-2"><strong>Porqué (Electrónica):</strong> Donan densidad electrónica al anillo por resonancia (+M) o inducción (+I), haciendo las posiciones O/P ricas en electrones (δ-), que es donde el E⁺ prefiere atacar.</p>
+                                            <p class="text-xs text-center mt-1"><strong>Ej:</strong> -OH, -NH₂, -OR, -R</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flashcard bg-white rounded-lg shadow-md border cursor-pointer h-48" onclick="this.querySelector('.flashcard-inner').classList.toggle('rotated')">
+                                     <div class="flashcard-inner relative w-full h-full">
+                                        <div class="flashcard-front absolute w-full h-full p-4 flex flex-col justify-center items-center">
+                                            <h5 class="font-bold text-center">Grupos Electrón-Atractores (GEA)<br/><span class="font-normal text-sm">(Desactivantes)</span></h5>
+                                            <p class="mt-4 text-xs text-center text-gray-500">Haz clic para ver la orientación</p>
+                                        </div>
+                                        <div class="flashcard-back absolute w-full h-full p-4 bg-red-50 rounded-lg flex flex-col justify-center">
+                                            <h5 class="font-bold text-red-800 text-center">Dirigen a Meta</h5>
+                                            <p class="text-xs text-center mt-2"><strong>Porqué (Electrónica):</strong> Retiran densidad electrónica del anillo, haciendo las posiciones O/P pobres en electrones (δ+). El E⁺ ataca en meta, que son las posiciones "menos pobres".</p>
+                                            <p class="text-xs text-center mt-1"><strong>Ej:</strong> -NO₂, -C=O, -CN, -SO₃H</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-xs p-3 bg-yellow-50 border-l-4 border-yellow-400">
+                                <strong>¡Ojo con los Halógenos!</strong> Son un caso especial: desactivan el anillo por su fuerte efecto inductivo (-I), pero dirigen a <strong>Orto/Para</strong> porque pueden donar un par de electrones por resonancia (+M).
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-md mb-3" style="color: var(--mint-green);">Sustitución Nucleofílica Aromática (SNAr)</h4>
+                            <p class="text-sm">No ocurre en benceno normal. Necesita dos condiciones clave:</p>
+                             <ul class="list-decimal list-inside mt-2 space-y-1 text-sm">
+                                <li><strong>Estructura:</strong> Debe tener un buen <strong>grupo saliente</strong> (normalmente un halógeno).</li>
+                                <li><strong>Electrónica:</strong> Debe tener <strong>grupos GEA fuertes</strong> (como -NO₂) en posiciones <strong>orto y/o para</strong> al grupo saliente. Esto hace que el carbono del ataque sea muy δ+ y estabiliza el intermedio de Meisenheimer.</li>
+                            </ul>
+                        </div>
+                        
+                         <div class="mt-6 pt-4 border-t">
+                            <h4 class="font-bold mb-2">Recursos Adicionales (Tema 1):</h4>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="https://open.spotify.com/episode/6cyFxOtRbGwUp5U0YwFUjg?si=INe0TWIyS1eKpRNWndayOw" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 p-2 rounded hover:bg-slate-200 transition" style="background-color: #f0f7f7;">
+                                    <svg role="img" viewBox="0 0 24 24" class="h-5 w-5" style="color: var(--mint-green);" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.923 16.204c-.22.359-.684.464-1.043.244-2.824-1.724-6.388-2.106-10.518-1.148-.422.099-.83-.16-1.009-.571-.18-.412.08-1.03.492-1.129 4.544-1.062 8.483-.62 11.648 1.299.359.22.464.684.244 1.043zm.135-3.234C15.24 7.514 9.17 7.234 5.396 8.284c-.595.16-1.222-.22-1.382-.814-.16-.595.22-1.222.814-1.382C9.696 4.935 16.48 5.245 20.82 7.734c.52.299.715.945.416 1.465-.299.52-.945.715-1.465.416z"/></svg>
+                                    <span class="text-sm font-semibold">Podcast del Tema 1</span>
+                                </a>
+                                <a href="https://notebooklm.google.com/notebook/b555d38b-4316-4e52-b646-bec6087be082?authuser=2" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 p-2 rounded hover:bg-slate-200 transition" style="background-color: #f0f7f7;">
+                                    <svg class="h-5 w-5" style="color: var(--deep-teal);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25" /></svg>
+                                    <span class="text-sm font-semibold">Guía NotebookLM del Tema 1</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tema 2: Derivados Halogenados -->
+                <div>
+                    <button class="accordion-header w-full text-left p-4 bg-white shadow-md rounded-lg font-bold text-lg flex justify-between items-center hover:bg-slate-50">
+                        <span>Tema 2: Derivados Halogenados</span>
+                        <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content hidden p-6 bg-white border-t">
+                        <p><strong>Principio Unificador Aplicado:</strong> La reactividad se centra en el enlace C-X. La <strong>distribución electrónica</strong> (polaridad, Cδ+) lo hace un electrófilo, y la <strong>estructura</strong> del sustrato (1º, 2º, 3º) define el mecanismo.</p>
+                        <ul class="list-disc list-inside mt-4 space-y-2">
+                            <li><strong>SN2:</strong> Requiere un sustrato poco impedido (Estructura 1º/2º) para que el nucleófilo fuerte (Electrónica) pueda realizar el ataque dorsal concertado.</li>
+                            <li><strong>SN1:</strong> Ocurre en sustratos impedidos (Estructura 3º/2º) que pueden formar un carbocatión estable. El nucleófilo es débil y el disolvente prótico estabiliza el C+ (Electrónica).</li>
+                        </ul>
+                         <div class="mt-6 pt-4 border-t">
+                            <h4 class="font-bold mb-2">Recursos Adicionales (Tema 2):</h4>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="https://open.spotify.com/episode/15Xucf5T29DmGvclPj6Af3?si=Q-wlARVvSkybA-I5-f7E6w" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 p-2 rounded hover:bg-slate-200 transition" style="background-color: #f0f7f7;">
+                                    <svg role="img" viewBox="0 0 24 24" class="h-5 w-5" style="color: var(--mint-green);" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.923 16.204c-.22.359-.684.464-1.043.244-2.824-1.724-6.388-2.106-10.518-1.148-.422.099-.83-.16-1.009-.571-.18-.412.08-1.03.492-1.129 4.544-1.062 8.483-.62 11.648 1.299.359.22.464.684.244 1.043zm.135-3.234C15.24 7.514 9.17 7.234 5.396 8.284c-.595.16-1.222-.22-1.382-.814-.16-.595.22-1.222.814-1.382C9.696 4.935 16.48 5.245 20.82 7.734c.52.299.715.945.416 1.465-.299.52-.945.715-1.465.416z"/></svg>
+                                    <span class="text-sm font-semibold">Podcast del Tema 2</span>
+                                </a>
+                                <a href="https://notebooklm.google.com/notebook/7ed78936-f67a-485b-99ce-d0bd4ce4e88b?authuser=2" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 p-2 rounded hover:bg-slate-200 transition" style="background-color: #f0f7f7;">
+                                    <svg class="h-5 w-5" style="color: var(--deep-teal);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25" /></svg>
+                                    <span class="text-sm font-semibold">Guía NotebookLM del Tema 2</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tema 3: Alcoholes, Éteres y Fenoles -->
+                <div>
+                    <button class="accordion-header w-full text-left p-4 bg-white shadow-md rounded-lg font-bold text-lg flex justify-between items-center hover:bg-slate-50">
+                        <span>Tema 3: Alcoholes, Éteres y Fenoles</span>
+                        <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content hidden p-6 bg-white border-t">
+                        <p><strong>Principio Unificador Aplicado:</strong> El par de electrones del oxígeno (Electrónica) domina la reactividad, actuando como base o nucleófilo. La estructura (alifático vs. aromático vs. cíclico tensionado) lo cambia todo.</p>
+                        <ul class="list-disc list-inside mt-4 space-y-2">
+                            <li><strong>Acidez Fenol vs. Alcohol:</strong> El fenol es 10⁷ veces más ácido porque la carga negativa del anión fenóxido se deslocaliza por resonancia en el anillo (Electrónica). El etóxido no tiene esta estabilización.</li>
+                            <li><strong>Reactividad de Epóxidos:</strong> La <strong>tensión del anillo</strong> de 3 miembros (Estructura) los hace muy reactivos. La apertura (regioselectividad) depende de si el mecanismo tiene carácter C+ (ácido) o se guía por el impedimento estérico (básico).</li>
+                        </ul>
+                         <div class="mt-6 pt-4 border-t">
+                            <h4 class="font-bold mb-2">Recursos Adicionales (Tema 3):</h4>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="https://open.spotify.com/episode/11LdbJYxzwhSjbEPFwYLAZ?si=MPof-5eyTSqRQt2LlU2kYA" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 p-2 rounded hover:bg-slate-200 transition" style="background-color: #f0f7f7;">
+                                    <svg role="img" viewBox="0 0 24 24" class="h-5 w-5" style="color: var(--mint-green);" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.923 16.204c-.22.359-.684.464-1.043.244-2.824-1.724-6.388-2.106-10.518-1.148-.422.099-.83-.16-1.009-.571-.18-.412.08-1.03.492-1.129 4.544-1.062 8.483-.62 11.648 1.299.359.22.464.684.244 1.043zm.135-3.234C15.24 7.514 9.17 7.234 5.396 8.284c-.595.16-1.222-.22-1.382-.814-.16-.595.22-1.222.814-1.382C9.696 4.935 16.48 5.245 20.82 7.734c.52.299.715.945.416 1.465-.299.52-.945.715-1.465.416z"/></svg>
+                                    <span class="text-sm font-semibold">Podcast del Tema 3</span>
+                                </a>
+                                <a href="https://notebooklm.google.com/notebook/24d1f954-e0ab-4ac1-aa67-533d74542350?authuser=2" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 p-2 rounded hover:bg-slate-200 transition" style="background-color: #f0f7f7;">
+                                    <svg class="h-5 w-5" style="color: var(--deep-teal);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25" /></svg>
+                                    <span class="text-sm font-semibold">Guía NotebookLM del Tema 3</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tema 4: Aminas -->
+                <div>
+                    <button class="accordion-header w-full text-left p-4 bg-white shadow-md rounded-lg font-bold text-lg flex justify-between items-center hover:bg-slate-50">
+                        <span>Tema 4: Aminas</span>
+                        <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content hidden p-6 bg-white border-t">
+                        <p><strong>Principio Unificador Aplicado:</strong> El par de electrones del nitrógeno (Electrónica) es la clave de su basicidad y nucleofilia. Su disponibilidad es modulada por la estructura (alifática vs. aromática).</p>
+                        <ul class="list-disc list-inside mt-4 space-y-2">
+                            <li><strong>Basicidad Alifática vs. Aromática:</strong> Una etilamina es ~10⁶ veces más básica que una anilina. ¿Por qué? En la anilina, el par de electrones está deslocalizado por resonancia en el anillo (Electrónica), por lo que está menos disponible para capturar un protón.</li>
+                            <li><strong>Dualidad en Fármacos:</strong> La capacidad de protonarse (formar sales solubles) o no (ser lipofílica) a pH fisiológico es crucial. Esta dualidad, controlada por su pKa (Electrónica), hace que estén en >75% de los fármacos.</li>
+                        </ul>
+                         <div class="mt-6 pt-4 border-t">
+                            <h4 class="font-bold mb-2">Recursos Adicionales (Tema 4):</h4>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="https://open.spotify.com/episode/0cvgBmcH3uekITFb8tqwcE?si=AZ9iai8iTYajkGS8hwqVmw" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 p-2 rounded hover:bg-slate-200 transition" style="background-color: #f0f7f7;">
+                                    <svg role="img" viewBox="0 0 24 24" class="h-5 w-5" style="color: var(--mint-green);" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.923 16.204c-.22.359-.684.464-1.043.244-2.824-1.724-6.388-2.106-10.518-1.148-.422.099-.83-.16-1.009-.571-.18-.412.08-1.03.492-1.129 4.544-1.062 8.483-.62 11.648 1.299.359.22.464.684.244 1.043zm.135-3.234C15.24 7.514 9.17 7.234 5.396 8.284c-.595.16-1.222-.22-1.382-.814-.16-.595.22-1.222.814-1.382C9.696 4.935 16.48 5.245 20.82 7.734c.52.299.715.945.416 1.465-.299.52-.945.715-1.465.416z"/></svg>
+                                    <span class="text-sm font-semibold">Podcast del Tema 4</span>
+                                </a>
+                                <a href="https://notebooklm.google.com/notebook/25a00917-997c-43a8-a7ed-f0d4d30f4056?authuser=2" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 p-2 rounded hover:bg-slate-200 transition" style="background-color: #f0f7f7;">
+                                    <svg class="h-5 w-5" style="color: var(--deep-teal);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25" /></svg>
+                                    <span class="text-sm font-semibold">Guía NotebookLM del Tema 4</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Visualizaciones -->
+         <section id="visualizaciones" class="mb-16">
+            <h2 class="section-title mb-8 text-center">Visualizaciones Clave</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-bold text-center mb-4">Estabilidad de Carbocationes</h3>
+                    <canvas id="carbocationChart"></canvas>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="font-bold text-center mb-4">Comparativa de Acidez (pKa)</h3>
+                    <canvas id="pkaChart"></canvas>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg lg:col-span-1">
+                    <h3 class="font-bold text-center mb-4">Comparativa de Basicidad de Aminas</h3>
+                    <canvas id="amineBasicityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="background-color: var(--charcoal-grey); color: var(--white);" class="text-center py-4 text-sm">
+        <p>&copy; 2025 - Guía de estudio para Química Orgánica II (QODOS) - Facultad de Farmacia, UGR.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lógica para los acordeones
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('svg');
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // Lógica para los botones de toggle simple
+            window.toggleElement = function(id) {
+                 const content = document.getElementById(id);
+                 content.classList.toggle('hidden');
+            }
+
+            // Lógica para las pestañas
+            window.changeTab = function(event, tabId, wrapperId) {
+                const wrapper = document.getElementById(wrapperId);
+                const buttons = wrapper.querySelectorAll('.tab-button');
+                const contents = wrapper.querySelectorAll('.tab-content');
+
+                buttons.forEach(button => button.classList.remove('tab-active'));
+                event.target.classList.add('tab-active');
+
+                contents.forEach(content => {
+                    if (content.id === tabId) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Lógica para los gráficos con Chart.js
+            const ctxCarbocation = document.getElementById('carbocationChart').getContext('2d');
+            new Chart(ctxCarbocation, {
+                type: 'bar',
+                data: {
+                    labels: ['Bencílico', 'Terciario (3º)', 'Secundario (2º)', 'Primario (1º)'],
+                    datasets: [{
+                        label: 'Estabilidad Relativa (Menor Energía)',
+                        data: [100, 85, 60, 10], // Mantengo datos, cambio colores
+                        backgroundColor: ['#00808099', '#3EB48999', '#FF7F5099', '#A6442699'], // Teal, Mint, Coral, Darker Coral
+                        borderColor: ['#008080', '#3EB489', '#FF7F50', '#A64426'],
+                        borderWidth: 1
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true, display: false } }, plugins: { legend: { display: false } } }
+            });
+
+            const ctxPka = document.getElementById('pkaChart').getContext('2d');
+            new Chart(ctxPka, {
+                type: 'bar',
+                data: {
+                    labels: ['Tiofenol (~6.5)', 'Fenol (~10)', 'Tiol (~10.5)', 'Agua (15.7)', 'Alcohol (~16)'],
+                    datasets: [{
+                        label: 'Acidez (Menor pKa = Más Ácido)',
+                        data: [6.5, 10, 10.5, 15.7, 16],
+                         backgroundColor: ['#00808099', '#3EB48999', '#00666699', '#36454F99', '#A6442699'],
+                        borderColor: ['#008080', '#3EB489', '#006666', '#36454F', '#A64426'],
+                        borderWidth: 1
+                    }]
+                },
+                 options: { indexAxis: 'y', scales: { x: { beginAtZero: true, title: { display: true, text: 'pKa' } } }, plugins: { legend: { display: false } } }
+            });
+
+            const ctxAmine = document.getElementById('amineBasicityChart').getContext('2d');
+            new Chart(ctxAmine, {
+                type: 'bar',
+                data: {
+                    labels: ['Anilina (Aromática)', 'Amoníaco (Ref.)', 'Etilamina (Alifática)'],
+                    datasets: [{
+                        label: 'pKa del Ácido Conjugado (Mayor pKa = Base más Fuerte)',
+                        data: [4.6, 9.25, 10.8],
+                        backgroundColor: ['#FF7F5099', '#36454F99', '#3EB48999'], // Coral, Charcoal, Mint
+                        borderColor: ['#FF7F50', '#36454F', '#3EB489'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: { y: { beginAtZero: true, title: { display: true, text: 'pKa (Ácido Conjugado)'} } },
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' pKa(Ác. Conj.): ' + context.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>
