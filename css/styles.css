@@ -1,0 +1,45 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--light-grey);
+}
+
+.flashcard-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flashcard-front,
+.flashcard-back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+}
+.rotated {
+    transform: rotateY(180deg);
+}
+.tab-button {
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+.tab-active {
+    border-color: var(--deep-teal);
+    background-color: #f0f7f7;
+    color: var(--deep-teal);
+    font-weight: 700;
+}
+.section-title {
+    font-weight: 900;
+    font-size: 2.25rem; /* text-4xl */
+    letter-spacing: -0.05em;
+    color: var(--deep-teal);
+}
+.molecule-diagram {
+    transition: transform 0.3s ease; /* Transición suave para el zoom */
+}
+.molecule-diagram:hover {
+    transform: scale(1.75); /* Aumenta el tamaño de la imagen al pasar el ratón */
+    z-index: 10; /* Asegura que la imagen ampliada se muestre por encima de otros elementos */
+}
