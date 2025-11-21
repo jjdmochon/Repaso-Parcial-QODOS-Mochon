@@ -1,45 +1,199 @@
+/*
+ * Genyo Fusion Branding Style
+ * Created for: QODOS Course, Faculty of Pharmacy, University of Granada
+ * Designer: DESTINA Graphic Designer
+ * Date: 2025-09-17
+ *
+ * Instructions:
+ * 1. To use the recommended font (Montserrat), add the following line at the
+ * very top of your main CSS file or inside the <head> tag of your HTML document:
+ * @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400 ;600;700&display=swap');
+ * 2. Link this CSS file to your HTML documents.
+ * 3. Use the defined classes (.title, .subtitle, .card, .highlight, etc.)
+ * to style your content.
+ */
+
+/* ==========================================================================
+   1. ROOT & COLOR VARIABLES
+   ========================================================================== */
+/*
+ * These are the core colors of your brand palette. Using variables makes it
+ * easy to maintain consistency.
+ */
+:root {
+  --deep-teal: #008080;      /* Primary color for titles and key elements */
+  --mint-green: #3EB489;      /* Secondary color for links and sub-headings */
+  --charcoal-grey: #36454F; /* Main text color for readability */
+  --light-grey: #F5F5F5;     /* Background color to reduce eye strain */
+  --vibrant-coral: #FF7F50;  /* Accent color for critical highlights */
+  --white: #FFFFFF;           /* For text on dark backgrounds */
+  --border-color: #E0E0E0;   /* A light border for cards and dividers */
+}
+
+/* ==========================================================================
+   2. GLOBAL & BODY STYLES
+   ========================================================================== */
+/*
+ * Base styles applied to the entire document for a consistent look.
+ */
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--light-grey);
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--light-grey);
+  color: var(--charcoal-grey);
+  line-height: 1.6;
+  font-size: 16px;
+  margin: 0;
+  padding: 2rem;
 }
 
-.flashcard-inner {
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+/* ==========================================================================
+   3. TYPOGRAPHY
+   ========================================================================== */
+/*
+ * Defines the hierarchy for all text elements, from main titles to captions.
+ */
+h1, .title {
+  color: var(--deep-teal);
+  font-weight: 700; /* Bold */
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
-.flashcard-front,
-.flashcard-back {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+h2, .subtitle {
+  color: var(--mint-green);
+  font-weight: 600; /* Semi-bold */
+  margin-bottom: 1rem;
 }
 
-.flashcard-back {
-    transform: rotateY(180deg);
+h3, .section-header {
+  color: var(--charcoal-grey);
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
-.rotated {
-    transform: rotateY(180deg);
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+  margin-bottom: 1rem;
 }
-.tab-button {
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s;
+
+a {
+  color: var(--mint-green);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
-.tab-active {
-    border-color: var(--deep-teal);
-    background-color: #f0f7f7;
-    color: var(--deep-teal);
-    font-weight: 700;
+
+a:hover, a:focus {
+  color: var(--deep-teal);
+  text-decoration: underline;
 }
-.section-title {
-    font-weight: 900;
-    font-size: 2.25rem; /* text-4xl */
-    letter-spacing: -0.05em;
-    color: var(--deep-teal);
+
+/* A utility class for image captions or small side notes */
+.caption {
+  font-size: 0.875rem;
+  color: #757575;
+  text-align: center;
+  margin-top: -0.5rem;
 }
+
+/* ==========================================================================
+   4. LAYOUT & COMPONENTS
+   ========================================================================== */
+/*
+ * Reusable components for structuring your course content.
+ */
+
+/* Use this for the main container of your content */
+.course-material {
+  background-color: var(--white);
+  padding: 2rem 3rem;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* A flexible card for examples, definitions, or profiles */
+.card {
+  background-color: #FAFAFA;
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--deep-teal);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 4px;
+}
+
+/* Style for molecule images or diagrams */
 .molecule-diagram {
-    transition: transform 0.3s ease; /* Transición suave para el zoom */
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 1rem;
+  background-color: var(--white);
 }
-.molecule-diagram:hover {
-    transform: scale(1.75); /* Aumenta el tamaño de la imagen al pasar el ratón */
-    z-index: 10; /* Asegura que la imagen ampliada se muestre por encima de otros elementos */
+
+/* Buttons for interactive elements */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--deep-teal);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: #006666; /* A slightly darker teal */
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   5. UTILITY CLASSES
+   ========================================================================== */
+/*
+ * Helper classes to apply specific styles quickly.
+ */
+
+/*
+ * CRITICAL HIGHLIGHT: Use this class to draw student attention to key
+ * steps in a mechanism, important formulas, or warnings.
+ */
+.highlight {
+  color: var(--vibrant-coral);
+  font-weight: 700;
+}
+
+/*
+ * Use for a block of highlighted text, like a key takeaway or warning.
+ */
+.alert-box {
+  background-color: #FFF3F0;
+  border-left: 5px solid var(--vibrant-coral);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 4px;
+}
+
+.alert-box p {
+  margin: 0;
+  color: #A64426;
+  font-weight: 600;
 }
